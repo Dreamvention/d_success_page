@@ -78,6 +78,8 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
 
         if ($this->model_setting_setting->getSetting($this->codename)) {
             $data['setting'] = $this->model_setting_setting->getSetting($this->codename);
+        }else{
+             $data['setting']=array();
         }
 
         if (isset($this->request->post[$this->codename.'_status'])) {
