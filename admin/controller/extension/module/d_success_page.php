@@ -54,7 +54,7 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         $this->document->addScript('view/javascript/d_bootstrap_switch/js/bootstrap-switch.min.js');
         $this->document->addStyle('view/javascript/d_bootstrap_switch/css/bootstrap-switch.css');
 
-
+        $data=array();
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 
             if (VERSION >= '3.0.0.0') {
