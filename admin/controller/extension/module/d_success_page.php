@@ -84,6 +84,8 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
 
         if (isset($this->request->post[$this->codename.'_status'])) {
             $data[$this->codename.'_status'] = $this->request->post[$this->codename.'_status'];
+        elseif (!isset($data['setting'][$this->codename.'_status'])) {
+             $data[$this->codename.'_status']=0;
         } else {
             $data[$this->codename.'_status'] = $data['setting'][$this->codename.'_status'];
         }
