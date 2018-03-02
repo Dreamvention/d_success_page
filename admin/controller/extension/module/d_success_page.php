@@ -17,7 +17,7 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         parent::__construct($registry);
 
         $this->load->language($this->route);
-        // $this->load->model($this->route);
+        $this->load->model($this->route);
         $this->d_shopunity = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_shopunity.json'));
         $this->d_opencart_patch = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_opencart_patch.json'));
         $this->d_twig_manager = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_twig_manager.json'));
@@ -53,10 +53,13 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
 
         $this->document->addScript('view/javascript/d_bootstrap_switch/js/bootstrap-switch.min.js');
         $this->document->addStyle('view/javascript/d_bootstrap_switch/css/bootstrap-switch.css');
+        $this->document->addStyle('view/javascript/d_success_page/d_design.css');
 
         $data=array();
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 
+            $this->model_extension_module_d_success_page->addInformation($this->request->post);
+            
             if (VERSION >= '3.0.0.0') {
                 $dsp_post_array = array();
                 
@@ -187,6 +190,9 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         if ($this->d_event_manager) {
             $this->load->model('extension/module/d_event_manager');
             $this->model_extension_module_d_event_manager->addEvent($this->codename, 'catalog/view/common/success/before', 'extension/event/d_success_page/view_checkout_success');
+            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/view/extension/module/d_success_page/after', 'extension/event/d_success_page/view_extension_module_d_success_page_after');
+            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/model/extension/module/d_success_page/addInformation/after', 'extension/event/d_success_page/model_extension_module_d_success_page_addInformation_after');
+            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/model/extension/module/d_success_page/editInformation/after', 'extension/event/d_success_page/model_extension_module_d_success_page_editInformation_after');
         }
         $this->load->model('extension/d_opencart_patch/user');
         $this->load->model('user/user_group');
