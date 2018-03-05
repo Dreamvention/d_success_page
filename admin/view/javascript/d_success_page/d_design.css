@@ -394,9 +394,6 @@ h4 {
     padding-top: 8px;
 }
 
-.bootstrap-switch-container{
-    width: 135px!important;
-}
 .panel-default .panel-body .form-horizontal .bootstrap-switch,
 .modal-dialog .form-horizontal .bootstrap-switch {
     margin-top: 3px;

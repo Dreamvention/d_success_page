@@ -2,21 +2,20 @@
 
 class ControllerExtensionEventDSuccessPage extends Controller
 {
-    private $codename = 'd_visual_designer';
     private $setting_module = array();
 
     public function __construct($registry)
     {
         parent::__construct($registry);
-        $this->load->model('extension/'.$this->codename.'/designer');
+        $this->load->model('extension/d_visual_designer/designer');
 
         $this->load->model('setting/setting');
-        $this->setting_module = $this->model_setting_setting->getSetting($this->codename);
+        $this->setting_module = $this->model_setting_setting->getSetting('d_visual_designer');
 
-        if (!empty($this->setting_module[$this->codename.'_setting'])) {
-            $this->setting_module = $this->setting_module[$this->codename.'_setting'];
+        if (!empty($this->setting_module['d_visual_designer_setting'])) {
+            $this->setting_module = $this->setting_module['d_visual_designer_setting'];
         } else {
-            $this->setting_module = $this->config->get($this->codename.'_setting');
+            $this->setting_module = $this->config->get('d_visual_designer_setting');
         }
     }
 
@@ -34,11 +33,11 @@ class ControllerExtensionEventDSuccessPage extends Controller
         }
 
         $designer_data = array(
-            'config' => 'information',
-            'id' => !empty($this->request->get['information_id']) ? $this->request->get['information_id']:false
+            'config' => 'success_page',
+            'id' => false
             );
 
-        $html_dom->find('body', 0)->innertext .= $this->load->controller('extension/'.$this->codename.'/designer', $designer_data);
+        $html_dom->find('body', 0)->innertext .= $this->load->controller('extension/d_visual_designer/designer', $designer_data);
 
         $output = (string)$html_dom;
     }
@@ -47,21 +46,9 @@ class ControllerExtensionEventDSuccessPage extends Controller
     {
         foreach ($data[0]['vd_content'] as $field_name => $setting_json) {
             $setting = json_decode(html_entity_decode($setting_json, ENT_QUOTES, 'UTF-8'), true);
-            $content = $this->{'model_extension_'.$this->codename.'_designer'}->parseSetting($setting);
-            // print_r($content);
-            $this->{'model_extension_'.$this->codename.'_designer'}->saveContent($content, 'information', $output, rawurldecode($field_name));
+            $content = $this->{'model_extension_d_visual_designer_designer'}->parseSetting($setting);
+            $this->{'model_extension_d_visual_designer_designer'}->saveContent($content, 'success_page', $output, rawurldecode($field_name));
         }
-    }
-
-    public function model_extension_module_d_success_page_editInformation_after(&$route, &$data, &$output)
-    {
-        foreach ($data[1]['vd_content'] as $field_name => $setting_json) {
-            $setting = json_decode(html_entity_decode($setting_json, ENT_QUOTES, 'UTF-8'), true);
-            $content = $this->{'model_extension_'.$this->codename.'_designer'}->parseSetting($setting);
-            $this->{'model_extension_'.$this->codename.'_designer'}->saveContent($content, 'information', $data[0], rawurldecode($field_name));
-        }
-    }
-    
-            //end of success page ##################################################################################################################################
+    }    
 
 }

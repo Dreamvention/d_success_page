@@ -20,18 +20,17 @@ class ControllerExtensionEventDSuccessPage extends Controller
             if($data['settings']['d_success_page_status']==1){
                 $data['heading_title'] = $data['settings']['d_success_page_description'][(int)$this->config->get('config_language_id')]['title'];
                 $data['text_message'] = html_entity_decode($data['settings']['d_success_page_description'][(int)$this->config->get('config_language_id')]['description']);
-            }
-
-            if(isset($data['text_message'])){
-            $designer_data = array(
-                'config' => 'information',
+                if(isset($data['text_message'])){
+                $designer_data = array(
+                'config' => 'success_page',
                 'content' => $data['text_message'],
                 'field_name' => 'd_success_page_description['.(int)$this->config->get('config_language_id').'][description]',
                 'id' => false
                 );
                 
-            $data['text_message'] = $this->load->controller('extension/d_visual_designer/designer', $designer_data);
-            $data['text_message'] = html_entity_decode($data['text_message'], ENT_QUOTES, 'UTF-8');
-        }
+                $data['text_message'] = $this->load->controller('extension/d_visual_designer/designer', $designer_data);
+                $data['text_message'] = html_entity_decode($data['text_message'], ENT_QUOTES, 'UTF-8');
+                }      
+            }
     }
 }
