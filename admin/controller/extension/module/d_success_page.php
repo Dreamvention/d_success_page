@@ -137,8 +137,7 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         }
         
         // Heading
-        $this->document->setTitle($this->language->get('heading_title_main'));
-        $data['heading_title'] = $this->language->get('heading_title');
+        $data['heading_title'] = $this->language->get('heading_title_main');
         $data['text_edit'] = $this->language->get('text_edit');
         
         // Variable
@@ -160,7 +159,6 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
         
-        // echo "<pre>"; print_r($data); echo "</pre>";
         $this->response->setOutput($this->model_extension_d_opencart_patch_load->view($this->route, $data));
     }
 

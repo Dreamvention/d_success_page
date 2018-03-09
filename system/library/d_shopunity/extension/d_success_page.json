@@ -55,7 +55,8 @@
         "admin/view/template/extension/module/d_success_page.twig",
         "admin/controller/extension/event/d_success_page.php",
         "admin/view/javascript/d_success_page/d_design.css",
-        "catalog/controller/extension/event/d_success_page.php"
+        "catalog/controller/extension/event/d_success_page.php",
+        "system/config/d_visual_designer_route/success_page.php"
     ],
     "changelog": [
         {
