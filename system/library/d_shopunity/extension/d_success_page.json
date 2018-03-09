@@ -46,7 +46,7 @@
         "d_twig_manager": ">= 1.4.1",
         "d_bootstrap_extra": ">= 1.0.1",
         "d_bootstrap_switch": ">= 3.3.5",
-        "d_visual_designer": ">= 3.0.0"
+        "d_visual_designer": ">= 1.0.0"
     },
     "files": [
         "system/library/d_shopunity/extension/d_success_page.json",
