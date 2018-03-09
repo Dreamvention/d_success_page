@@ -46,6 +46,7 @@
         "d_twig_manager": ">= 1.4.1",
         "d_bootstrap_extra": ">= 1.0.1",
         "d_bootstrap_switch": ">= 3.3.5",
+        "d_simple_html_dom": ">= 1.0.4",
         "d_visual_designer": ">= 1.0.0"
     },
     "files": [
