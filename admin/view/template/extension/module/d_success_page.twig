@@ -51,7 +51,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-general">
-                            <ul class="nav nav-tabs" id="language">
+                            <ul class="nav nav-pills" id="language">
                                 {% for language in languages %}
                                 <li>
                                     <a href="#language{{ language.language_id }}" data-toggle="tab">
@@ -59,6 +59,7 @@
                                 </li>
                                 {% endfor %}
                             </ul>
+                            <hr>
                             <div class="tab-content">{% for language in languages %}
                                 <div class="tab-pane active" id="language{{ language.language_id }}">
                                     <div class="form-group required">
