@@ -16,6 +16,9 @@ class ControllerExtensionEventDSuccessPage extends Controller
     public function view_checkout_success(&$view, &$data, &$output)
     {       
             $this->load->model('setting/setting');
+            $this->load->model('checkout/order');
+            $info = $this->model_checkout_order->getOrder($data['order_id']);
+            $this->session->data['order_information'] = $info;
             $data['settings'] = $setting = $this->model_setting_setting->getSetting($this->codename);
             if($data['settings']['d_success_page_status']==1){
                 $data['heading_title'] = $data['settings']['d_success_page_description'][(int)$this->config->get('config_language_id')]['title'];

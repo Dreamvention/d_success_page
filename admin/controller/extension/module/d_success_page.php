@@ -193,8 +193,10 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
         }
         $this->model_extension_module_d_success_page->instalDatabase();
         $this->load->model('extension/d_opencart_patch/user');
+        $this->load->model('extension/d_opencart_patch/modification');
         $this->load->model('user/user_group');
-
+        $this->model_extension_d_opencart_patch_modification->setModification('d_success_page.xml', 1);
+        $this->model_extension_d_opencart_patch_modification->refreshCache();
         $this->model_user_user_group->addPermission($this->model_extension_d_opencart_patch_user->getGroupId(), 'access', 'extension/'.$this->codename);
         $this->model_user_user_group->addPermission($this->model_extension_d_opencart_patch_user->getGroupId(), 'modify', 'extension/'.$this->codename);
 
@@ -203,9 +205,12 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
     public function uninstall()
     {
         if (file_exists(DIR_APPLICATION . 'model/extension/module/d_event_manager.php')) {
-            $this->load->model('extension/module/d_event_manager');
+            $this->load->model('extension/module/d_event_manager');            
             $this->model_extension_module_d_event_manager->deleteEvent($this->codename);
         }
+        $this->load->model('extension/d_opencart_patch/modification');
+        $this->model_extension_d_opencart_patch_modification->setModification('d_success_page.xml', 0);
+        $this->model_extension_d_opencart_patch_modification->refreshCache();
         $this->model_extension_module_d_success_page->dropDatabase();
     }
 }

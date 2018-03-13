@@ -59,7 +59,17 @@
         "admin/controller/extension/event/d_success_page.php",
         "admin/view/javascript/d_success_page/d_design.css",
         "catalog/controller/extension/event/d_success_page.php",
-        "system/config/d_visual_designer_route/success_page.php"
+        "system/config/d_visual_designer_route/success_page.php",
+        "admin/view/template/extension/d_visual_designer_module/order_table.twig",
+        "admin/controller/extension/d_visual_designer_module/order_table.php",
+        "admin/language/en-gb/extension/d_visual_designer_module/order_table.php",
+        "admin/view/template/extension/d_visual_designer/content_blocks/vd-block-order_table.tag",
+        "catalog/controller/extension/d_visual_designer_module/order_table.php",
+        "catalog/language/en-gb/extension/d_visual_designer_module/order_table.php",
+        "catalog/view/theme/default/template/extension/d_visual_designer/content_blocks/vd-block-order_table.tag",
+        "catalog/view/theme/default/template/extension/d_visual_designer_module/order_table.twig",
+        "system/config/d_visual_designer/order_table.php",
+        "system/library/d_shopunity/install/d_success_page.xml"
     ],
     "changelog": [
         {

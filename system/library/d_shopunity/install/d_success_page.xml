@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>d_success_page</name>
+    <code>d_success_page</code>
+    <description>This is a modification file. You can use it to </description>
+    <version>1.0.0</version>
+    <author>Dreamvention</author>
+    <link>http://dreamvention.com</link>
+    <file path="catalog/controller/checkout/success.php">
+        <operation error="skip">
+            <search><![CDATA[$this->cart->clear();]]></search>
+
+            <add position="after"><![CDATA[
+            $data['order_id'] = ($this->session->data['order_id']);
+            ]]></add>
+        </operation>
+    </file>
+</modification>
