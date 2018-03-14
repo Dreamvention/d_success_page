@@ -6,13 +6,13 @@ $_['frontend_status']   = '1';
 //GET параметр route в админке 
 $_['backend_route']     = 'extension/module/d_success_page';
 //REGEX для GET параметров route в админке
-$_['backend_route_regex'] = 'catalog/information/*';
+// $_['backend_route_regex'] = 'catalog/information/*';
 //GET параметр route на Frontend
 $_['frontend_route']    = 'checkout/success';
 //GET параметр содержащий id страницы в админке
-$_['backend_param']     = 'sucess_id';
+// $_['backend_param']     = 'sucess_id';
 //GET параметр содержащий id страницы на Frontend
-$_['frontend_param']    = 'sucess_id';
+// $_['frontend_param']    = 'sucess_id';
 //Путь для сохранения описания на Frontend
 $_['edit_route']        = 'extension/d_visual_designer/designer/saveInformation';
 //События необходимые для работы данного route

@@ -19,44 +19,96 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
     public function index($setting)
     {   
         $this->load->model('checkout/order');
-        $info_order = $this->session->data['order_information'];
-        $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
-        // echo "<pre>"; print_r($info_order); echo "</pre>";
+        $this->load->model('catalog/product');
+        $this->load->model('tool/image');
+        if($this->request->get['route']=='checkout/success'){
+            $info_order = $this->session->data['order_information'];
+            $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
+            $products = $this->model_checkout_order->getOrderProducts($info_order['order_id']);
+
+            foreach ($products as $product) {
+            $product_info = $this->model_catalog_product->getProduct($product['product_id']);
+				$data['order_products'][] = array(
+					'product_id' => $product['product_id'],
+					'name'       => $product['name'],
+                    'model'      => $product['model'],
+                    'image'      => isset($product_info['image']) && !empty($product_info['image']) ? $this->model_tool_image->resize($product_info['image'], 100, 100) : '',
+                    'option'     => $this->model_checkout_order->getOrderOptions($info_order['order_id'], $product['order_product_id']),
+                    'href'       => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+					'quantity'   => $product['quantity'],
+					'price'      => $this->currency->format($product['price'] , $this->session->data['currency']),
+					'total'      => $this->currency->format($product['price'] , $this->session->data['currency']),
+					'reward'     => $product['reward']
+				);
+            }
+            
+            $data['table']  = html_entity_decode(htmlspecialchars_decode('<table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <td class="text-left" >Order Details</td>
+                <td class="text-left" >Payment Details</td>
+                <td class="text-left" >Shipping Details</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-left" style="width: 50%;">
+                <b>Order ID: </b> '.$info_order["order_id"].'<br />
+                <b>First name: </b>'.$info_order["firstname"].'<br />
+                <b>Last name: </b>'.$info_order["lastname"].'<br />
+                <b>Email : </b>'.$info_order["email"].'<br />
+                <b>Date Added: </b>'.$info_order["date_added"].'<br />
+                </td>
+                <td class="text-left">
+                    <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
+                    <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
+                    <b>Country: </b> '.$info_order["payment_country"].'<br />
+                    <b>City: </b> '.$info_order["payment_city"].'<br />
+                    <b>Post code</b> '.$info_order["payment_postcode"].'<br />
+                </td>
+                <td class="text-left">
+                    <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
+                    <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
+                    <b>Country: </b> '.$info_order["shipping_country"].'<br />
+                    <b>City: </b> '.$info_order["shipping_city"].'<br />
+                    <b>Post code</b> '.$info_order["shipping_postcode"].'<br />
+                </td>
+            </tr>
+            </tbody>'), ENT_QUOTES, 'UTF-8');
+            $product_table='</table>
+                <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <td class="text-left">Product</td>
+                            <td class="text-left">Model</td>
+                            <td class="text-right">Quantity</td>
+                            <td class="text-right">Price</td>
+                            <td class="text-right">Total</td>
+                            </tr>
+                        </thead>
+                        <tbody id="cart">';
+                foreach ($data['order_products'] as $key => $product) {
+                    $product_table .='<tr><td><a href="'.$product['href'].'">'.$product['name'].'</a><br />';
+                    $product_table .='<img src="'.$product['image'].'"/>  ';
+                    if(!empty($product['option'])){
+                        foreach ($product['option'] as $key => $option) {
+                            $product_table .='<small>'.$option['name'].' : '.$option['value'].'</small><br />';
+                        }
+                    }
+                    $product_table .='</td><td>'.$product['model'].'</td>
+                                    <td>'.$product['quantity'].'</td>
+                                    <td>'.$product['price'].'</td>
+                                    <td>'.$product['total'].'</td>
+                                    </tr>';
+                }
+                $product_table .='<tr>                     
+                            </tr>
+                        </tbody>
+                        </table>';
+                $data['table'] .= $product_table;
+        }
+        
         $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
-        $data['table']  = html_entity_decode(htmlspecialchars_decode('<table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <td class="text-left" >Order Details</td>
-            <td class="text-left" >Payment Details</td>
-            <td class="text-left" >Shipping Details</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" style="width: 50%;">
-              <b>Order ID: </b> '.$info_order["order_id"].'<br />
-              <b>First name: </b>'.$info_order["firstname"].'<br />
-              <b>Last name: </b>'.$info_order["lastname"].'<br />
-              <b>Email : </b>'.$info_order["email"].'<br />
-              <b>Date Added: </b>'.$info_order["date_added"].'<br />
-            </td>
-            <td class="text-left">
-                <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
-                <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
-                <b>Country: </b> '.$info_order["payment_country"].'<br />
-                <b>City: </b> '.$info_order["payment_city"].'<br />
-                <b>Post code</b> '.$info_order["payment_postcode"].'<br />
-              </td>
-              <td class="text-left">
-                <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
-                <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
-                <b>Country: </b> '.$info_order["shipping_country"].'<br />
-                <b>City: </b> '.$info_order["shipping_city"].'<br />
-                <b>Post code</b> '.$info_order["shipping_postcode"].'<br />
-              </td>
-          </tr>
-        </tbody>
-      </table>'), ENT_QUOTES, 'UTF-8');
         return $data;
     }
     
