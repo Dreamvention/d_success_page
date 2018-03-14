@@ -34,25 +34,25 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         <tbody>
           <tr>
             <td class="text-left" style="width: 50%;">
-              
               <b>Order ID: </b> '.$info_order["order_id"].'<br />
               <b>First name: </b>'.$info_order["firstname"].'<br />
               <b>Last name: </b>'.$info_order["lastname"].'<br />
-              <b>Email : </b>'.$info_order["email"].'</td>
+              <b>Email : </b>'.$info_order["email"].'<br />
               <b>Date Added: </b>'.$info_order["date_added"].'<br />
+            </td>
             <td class="text-left">
-              <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
-              <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
-              <b>Country: </b> '.$info_order["payment_country"].'<br />
-              <b>City: </b> '.$info_order["payment_city"].'<br />
-              <b>Post code</b> '.$info_order["payment_postcode"].'<br />
+                <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
+                <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
+                <b>Country: </b> '.$info_order["payment_country"].'<br />
+                <b>City: </b> '.$info_order["payment_city"].'<br />
+                <b>Post code</b> '.$info_order["payment_postcode"].'<br />
               </td>
               <td class="text-left">
-              <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
-              <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
-              <b>Country: </b> '.$info_order["shipping_country"].'<br />
-              <b>City: </b> '.$info_order["shipping_city"].'<br />
-              <b>Post code</b> '.$info_order["shipping_postcode"].'<br />
+                <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
+                <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
+                <b>Country: </b> '.$info_order["shipping_country"].'<br />
+                <b>City: </b> '.$info_order["shipping_city"].'<br />
+                <b>Post code</b> '.$info_order["shipping_postcode"].'<br />
               </td>
           </tr>
         </tbody>
