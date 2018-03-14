@@ -26,24 +26,28 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         $data['table']  = html_entity_decode(htmlspecialchars_decode('<table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <td class="text-left" colspan="2">Order Details</td>
+            <td class="text-left" >Order Details</td>
+            <td class="text-left" >Payment Details</td>
+            <td class="text-left" >Shipping Details</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="text-left" style="width: 50%;">
-              <b>Invoice No.: </b>'.$info_order["invoice_prefix"].'<br />
+              
               <b>Order ID: </b> '.$info_order["order_id"].'<br />
-              <b>Date Added: </b>'.$info_order["date_added"].'<br />
               <b>First name: </b>'.$info_order["firstname"].'<br />
               <b>Last name: </b>'.$info_order["lastname"].'<br />
               <b>Email : </b>'.$info_order["email"].'</td>
+              <b>Date Added: </b>'.$info_order["date_added"].'<br />
             <td class="text-left">
               <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
               <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
               <b>Country: </b> '.$info_order["payment_country"].'<br />
               <b>City: </b> '.$info_order["payment_city"].'<br />
               <b>Post code</b> '.$info_order["payment_postcode"].'<br />
+              </td>
+              <td class="text-left">
               <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
               <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
               <b>Country: </b> '.$info_order["shipping_country"].'<br />
