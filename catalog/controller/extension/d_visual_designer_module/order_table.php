@@ -33,7 +33,7 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
 					'name'       => $product['name'],
                     'model'      => $product['model'],
                     'image'      => isset($product_info['image']) && !empty($product_info['image']) ? $this->model_tool_image->resize($product_info['image'], 100, 100) : '',
-                    'option'     => $this->model_checkout_order->getOrderOptions($info_order['order_id'], $product['order_product_id']),
+                    'option'     => $this->getOrderOptions($info_order['order_id'], $product['order_product_id']),
                     'href'       => $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'quantity'   => $product['quantity'],
 					'price'      => $this->currency->format($product['price'] , $this->session->data['currency']),
@@ -114,6 +114,12 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
 
     public function getOrderProducts($order_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+		
+		return $query->rows;
+    }
+    
+    public function getOrderOptions($order_id, $order_product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product_id . "'");
 		
 		return $query->rows;
 	}
