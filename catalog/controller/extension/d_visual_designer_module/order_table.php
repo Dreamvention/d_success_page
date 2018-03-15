@@ -24,7 +24,7 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         if($this->request->get['route']=='checkout/success'){
             $info_order = $this->session->data['order_information'];
             $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
-            $products = $this->model_checkout_order->getOrderProducts($info_order['order_id']);
+            $products = $this->getOrderProducts($info_order['order_id']);
 
             foreach ($products as $product) {
             $product_info = $this->model_catalog_product->getProduct($product['product_id']);
@@ -111,6 +111,12 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
         return $data;
     }
+
+    public function getOrderProducts($order_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+		
+		return $query->rows;
+	}
     
     public function setting($setting)
     {
