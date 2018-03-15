@@ -32,10 +32,10 @@
         "url": "https://shopunity.net/licenses/free"
     },
     "install": {
-        "url": "extension/extension/module/install&extension==d_success_page"
+        "url": "extension/extension/module/install&extension=d_success_page"
     },
     "uninstall": {
-        "url": "extension/extension/module/uninstall&extension==d_success_page"
+        "url": "extension/extension/module/uninstall&extension=d_success_page"
     },
     "support": {
         "email": "support@dreamvention.com",
