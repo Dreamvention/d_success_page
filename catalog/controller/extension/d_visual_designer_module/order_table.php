@@ -88,8 +88,8 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
                         </thead>
                         <tbody id="cart">';
                 foreach ($data['order_products'] as $key => $product) {
-                    $product_table .='<tr><td><a href="'.$product['href'].'">'.$product['name'].'</a><br />';
-                    $product_table .='<img src="'.$product['image'].'"/>  ';
+                    $product_table .='<tr><td><a href="'.$product['href'].'">'.'<img src="'.$product['image'].'"/> '.$product['name'].'</a> ';
+                    // $product_table .='<img src="'.$product['image'].'"/></a>  ';
                     if(!empty($product['option'])){
                         foreach ($product['option'] as $key => $option) {
                             $product_table .='<small>'.$option['name'].' : '.$option['value'].'</small><br />';
