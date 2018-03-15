@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "name": "Success Page",
     "description": "Editor for success page",
-    "index": "extension/module/d_sucess_page",
+    "index": "extension/module/d_success_page",
     "author": {
         "name": "Shopunity",
         "email": "info@shopunity.com",
