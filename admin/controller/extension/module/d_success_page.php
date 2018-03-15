@@ -185,12 +185,12 @@ class ControllerExtensionModuleDSuccessPage extends Controller{
             $this->load->model('extension/d_shopunity/mbooth');
             $this->model_extension_d_shopunity_mbooth->installDependencies($this->codename);
         }
-        if ($this->d_event_manager) {
-            $this->load->model('extension/module/d_event_manager');
-            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'catalog/view/common/success/before', 'extension/event/d_success_page/view_checkout_success');
-            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/view/extension/module/d_success_page/after', 'extension/event/d_success_page/view_extension_module_d_success_page_after');
-            $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/model/extension/module/d_success_page/addInformation/after', 'extension/event/d_success_page/model_extension_module_d_success_page_addInformation_after');
-        }
+        // if ($this->d_event_manager) {
+        //     $this->load->model('extension/module/d_event_manager');
+        //     $this->model_extension_module_d_event_manager->addEvent($this->codename, 'catalog/view/common/success/before', 'extension/event/d_success_page/view_checkout_success');
+        //     $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/view/extension/module/d_success_page/after', 'extension/event/d_success_page/view_extension_module_d_success_page_after');
+        //     $this->model_extension_module_d_event_manager->addEvent($this->codename, 'admin/model/extension/module/d_success_page/addInformation/after', 'extension/event/d_success_page/model_extension_module_d_success_page_addInformation_after');
+        // }
         $this->model_extension_module_d_success_page->instalDatabase();
         $this->load->model('extension/d_opencart_patch/user');
         $this->load->model('extension/d_opencart_patch/modification');
