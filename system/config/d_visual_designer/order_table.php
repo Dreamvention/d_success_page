@@ -31,6 +31,18 @@ $_['text']             = 'text';
 //Настройки по умолчанию
 $_['setting'] = array(
     'text' => 'ORder dsfdsfdsfdsfds kek',
-    'kek' => 'dasdasdasdasd',
-    'dasdasd' => 'zzzzzzzzzzzzzzzz'
+    'order_id' => true,
+    'name' => true,
+    'email' => true,
+    'payment_method' => true,
+    'shipping_method' => true,
+    'date_added' => true,
+    'payment_address_1' => true,
+    'payment_country' => true,
+    'payment_city' => true,
+    'payment_postcode' => true,
+    'shipping_address_1' => true,
+    'shipping_country' => true,
+    'shipping_city' => true,
+    'shipping_postcode' => true
 );

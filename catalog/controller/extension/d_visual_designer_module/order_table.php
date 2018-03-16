@@ -22,6 +22,7 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         $this->load->model('catalog/product');
         $this->load->model('tool/image');
         if($this->request->get['route']=='checkout/success'){
+            
             $info_order = $this->session->data['order_information'];
             $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
             $products = $this->getOrderProducts($info_order['order_id']);
@@ -41,71 +42,22 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
 					'reward'     => $product['reward']
 				);
             }
-            
-            $data['table']  = html_entity_decode(htmlspecialchars_decode('<table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <td class="text-left" >Order Details</td>
-                <td class="text-left" >Payment Details</td>
-                <td class="text-left" >Shipping Details</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="text-left" style="width: 50%;">
-                <b>Order ID: </b> '.$info_order["order_id"].'<br />
-                <b>First name: </b>'.$info_order["firstname"].'<br />
-                <b>Last name: </b>'.$info_order["lastname"].'<br />
-                <b>Email : </b>'.$info_order["email"].'<br />
-                <b>Date Added: </b>'.$info_order["date_added"].'<br />
-                </td>
-                <td class="text-left">
-                    <b>Payment Method: </b>'.$info_order["payment_method"].'<br />
-                    <b>Payment address: </b> #'.$info_order["payment_address_1"].'<br />
-                    <b>Country: </b> '.$info_order["payment_country"].'<br />
-                    <b>City: </b> '.$info_order["payment_city"].'<br />
-                    <b>Post code</b> '.$info_order["payment_postcode"].'<br />
-                </td>
-                <td class="text-left">
-                    <b>Shipping Method: </b>'.$info_order["shipping_method"].'<br />
-                    <b>Shipping address: </b> '.$info_order["shipping_address_1"].'<br />
-                    <b>Country: </b> '.$info_order["shipping_country"].'<br />
-                    <b>City: </b> '.$info_order["shipping_city"].'<br />
-                    <b>Post code</b> '.$info_order["shipping_postcode"].'<br />
-                </td>
-            </tr>
-            </tbody>'), ENT_QUOTES, 'UTF-8');
-            $product_table='</table>
-                <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                            <td class="text-left">Product</td>
-                            <td class="text-left">Model</td>
-                            <td class="text-right">Quantity</td>
-                            <td class="text-right">Price</td>
-                            <td class="text-right">Total</td>
-                            </tr>
-                        </thead>
-                        <tbody id="cart">';
-                foreach ($data['order_products'] as $key => $product) {
-                    $product_table .='<tr><td><a href="'.$product['href'].'">'.'<img src="'.$product['image'].'"/> '.$product['name'].'</a> ';
-                    // $product_table .='<img src="'.$product['image'].'"/></a>  ';
-                    if(!empty($product['option'])){
-                        foreach ($product['option'] as $key => $option) {
-                            $product_table .='<small>'.$option['name'].' : '.$option['value'].'</small><br />';
-                        }
-                    }
-                    $product_table .='</td><td>'.$product['model'].'</td>
-                                    <td>'.$product['quantity'].'</td>
-                                    <td>'.$product['price'].'</td>
-                                    <td>'.$product['total'].'</td>
-                                    </tr>';
-                }
-                $product_table .='<tr>                     
-                            </tr>
-                        </tbody>
-                        </table>';
-                $data['table'] .= $product_table;
+
+            $data['order_id'] = $info_order["order_id"];
+            $data['name'] = $setting['name'] ? $info_order["firstname"].' '.$info_order["lastname"]  : '';
+            $data['email'] = $setting['email'] ? $info_order["email"] : '';
+            $data['payment_method'] = $setting['payment_method'] ? $info_order["payment_method"] : '';
+            $data['shipping_method'] = $setting['shipping_method'] ? $info_order["shipping_method"] : '';
+            $data['date_added'] = $setting['date_added'] ?  $info_order["date_added"] : '';
+            $data['payment_address_1'] = $setting['payment_address_1'] ?  $info_order['payment_address_1'] : '';
+            $data['payment_country'] = $setting['payment_country'] ?  $info_order['payment_country'] : '';
+            $data['payment_city'] = $setting['payment_city'] ?  $info_order['payment_city'] : '';
+            $data['payment_postcode'] = $setting['payment_postcode'] ?  $info_order['payment_postcode'] : '';
+            $data['shipping_address_1'] = $setting['shipping_address_1'] ?  $info_order['shipping_address_1'] : '';
+            $data['shipping_country'] = $setting['shipping_country'] ?  $info_order['shipping_country'] : '';
+            $data['shipping_city'] = $setting['shipping_city'] ?  $info_order['shipping_city'] : '';
+            $data['shipping_postcode'] = $setting['shipping_postcode'] ?  $info_order['shipping_postcode'] : '';
+
         }
         
         $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
@@ -127,6 +79,7 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
     public function setting($setting)
     {
         $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
+        
         return $data;
     }
 
@@ -136,6 +89,29 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         if($permission){
             $data['entry_text'] = $this->language->get('entry_text');
         }
+
+        $data['name'] = $this->language->get('name');
+        $data['email'] = $this->language->get('email');
+        $data['order_id'] = $this->language->get('order_id');
+        $data['payment_method'] = $this->language->get('payment_method');
+        $data['shipping_method'] = $this->language->get('shipping_method');
+        $data['date_added'] = $this->language->get('date_added');
+        $data['payment_address_1'] = $this->language->get('payment_address_1');
+        $data['payment_country'] = $this->language->get('payment_country');
+        $data['payment_city'] = $this->language->get('payment_city');
+        $data['payment_postcode'] = $this->language->get('payment_postcode');
+        $data['shipping_address_1' ]= $this->language->get('shipping_address_1');
+        $data['shipping_country'] = $this->language->get('shipping_country');
+        $data['shipping_city' ]= $this->language->get('shipping_city');
+        $data['shipping_postcode'] = $this->language->get('shipping_postcode');
+        $data['order_details'] = $this->language->get('order_details');
+        $data['payment_details'] = $this->language->get('payment_details');
+        $data['shipping_details'] = $this->language->get('shipping_details');
+        $data['product'] = $this->language->get('product');
+        $data['model'] = $this->language->get('model');
+        $data['quantity'] = $this->language->get('quantity');
+        $data['price'] = $this->language->get('price');
+        $data['total'] = $this->language->get('total');
 
         return $data;
     }
