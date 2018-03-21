@@ -401,8 +401,8 @@ h4 {
     border: 2px solid #dbdfef;
     border-radius: 5px;
 }
-.panel-default .panel-body .form-horizontal .bootstrap-switch .bootstrap-switch-label,
-.modal-dialog .form-horizontal .bootstrap-switch .bootstrap-switch-label {
+.panel-default .panel-body .form-horizontal ,
+.modal-dialog .form-horizontal{
     color: #000;
     white-space: nowrap;
 }

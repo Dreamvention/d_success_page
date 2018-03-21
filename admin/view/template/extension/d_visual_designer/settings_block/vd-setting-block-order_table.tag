@@ -1,71 +1,75 @@
 <vd-setting-block-order_table>
-<div class="form-group col-md-6"> 
+<div class="form-group col-md-12"> 
    <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.name')}</div>
         <input type="hidden" name="name" value="0" />
-        <input type="checkbox" name="name" class="switcher" checked={setting.edit.name} value="1" change={change} />
-        {store.getLocal('blocks.order_table.name')}
+        <div class="col-md-3"><input type="checkbox" name="name" class="switcher" checked={setting.edit.name} value="1" change={change} /></div>
+        
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.email')}</div>
         <input type="hidden" name="email" value="0" />
-        <input type="checkbox" name="email" class="switcher" checked={setting.edit.email} value="1" change={change} />
-        {store.getLocal('blocks.order_table.email')}
+        <div class="col-md-3"><input type="checkbox" name="email" class="switcher" checked={setting.edit.email} value="1" change={change} /></div>
+        
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.payment_method')}</div>
         <input type="hidden" name="payment_method" value="0" />
-        <input type="checkbox" name="payment_method" class="switcher" checked={setting.edit.payment_method} value="1" change={change} />
-        {store.getLocal('blocks.order_table.payment_method')}
+        <div class="col-md-3"><input type="checkbox" name="payment_method" class="switcher" checked={setting.edit.payment_method} value="1" change={change} /></div>
+        
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.shipping_method')}</div>
         <input type="hidden" name="shipping_method" value="0" />
-        <input type="checkbox" name="shipping_method" class="switcher" checked={setting.edit.shipping_method} value="1" change={change} />
-        {store.getLocal('blocks.order_table.shipping_method')}
+        <div class="col-md-3"><input type="checkbox" name="shipping_method" class="switcher" checked={setting.edit.shipping_method} value="1" change={change} /></div>
+        
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.payment_address_1')}</div>
         <input type="hidden" name="payment_address_1" value="0" />
-        <input type="checkbox" name="payment_address_1" class="switcher" checked={setting.edit.payment_address_1} value="1" change={change} />
-        {store.getLocal('blocks.order_table.payment_address_1')}
+        <div class="col-md-3"><input type="checkbox" name="payment_address_1" class="switcher" checked={setting.edit.payment_address_1} value="1" change={change} /></div>
+        
     </label>
     <label class="vd-checkbox">
+    <div class="col-md-3">{store.getLocal('blocks.order_table.shipping_address_1')}</div>
         <input type="hidden" name="shipping_address_1" value="0" />
-        <input type="checkbox" name="shipping_address_1" class="switcher" checked={setting.edit.shipping_address_1} value="1" change={change} />
-        {store.getLocal('blocks.order_table.shipping_address_1')}
+        <div class="col-md-3"><input type="checkbox" name="shipping_address_1" class="switcher" checked={setting.edit.shipping_address_1} value="1" change={change} /></div>
+        
     </label>
-</div>
-<div class="form-group col-md-6"> 
    <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.date_added')}</div>
         <input type="hidden" name="date_added" value="0" />
-        <input type="checkbox" name="date_added" class="switcher" checked={setting.edit.date_added} value="1" change={change} />
-        {store.getLocal('blocks.order_table.date_added')}
+        <div class="col-md-3"><input type="checkbox" name="date_added" class="switcher" checked={setting.edit.date_added} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.payment_country')}</div>
         <input type="hidden" name="payment_country" value="0" />
-        <input type="checkbox" name="payment_country" class="switcher" checked={setting.edit.payment_country} value="1" change={change} />
-        {store.getLocal('blocks.order_table.payment_country')}
+        <div class="col-md-3"><input type="checkbox" name="payment_country" class="switcher" checked={setting.edit.payment_country} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.payment_city')}</div>
         <input type="hidden" name="payment_city" value="0" />
-        <input type="checkbox" name="payment_city" class="switcher" checked={setting.edit.payment_city} value="1" change={change} />
-        {store.getLocal('blocks.order_table.payment_city')}
+        <div class="col-md-3"><input type="checkbox" name="payment_city" class="switcher" checked={setting.edit.payment_city} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.payment_postcode')}</div>
         <input type="hidden" name="payment_postcode" value="0" />
-        <input type="checkbox" name="payment_postcode" class="switcher" checked={setting.edit.payment_postcode} value="1" change={change} />
-        {store.getLocal('blocks.order_table.payment_postcode')}
+        <div class="col-md-3"><input type="checkbox" name="payment_postcode" class="switcher" checked={setting.edit.payment_postcode} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.shipping_country')}</div>
         <input type="hidden" name="shipping_city" value="0" />
-        <input type="checkbox" name="shipping_city" class="switcher" checked={setting.edit.shipping_country} value="1" change={change} />
-        {store.getLocal('blocks.order_table.shipping_country')}
+        <div class="col-md-3"><input type="checkbox" name="shipping_city" class="switcher" checked={setting.edit.shipping_country} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.shipping_city')}</div>
         <input type="hidden" name="shipping_city" value="0" />
-        <input type="checkbox" name="shipping_city" class="switcher" checked={setting.edit.shipping_city} value="1" change={change} />
-        {store.getLocal('blocks.order_table.shipping_city')}
+        <div class="col-md-3"><input type="checkbox" name="shipping_city" class="switcher" checked={setting.edit.shipping_city} value="1" change={change} /></div>
     </label>
     <label class="vd-checkbox">
+        <div class="col-md-3">{store.getLocal('blocks.order_table.shipping_postcode')}</div>
         <input type="hidden" name="shipping_postcode" value="0" />
-        <input type="checkbox" name="shipping_postcode" class="switcher" checked={setting.edit.shipping_postcode} value="1" change={change} />
-        {store.getLocal('blocks.order_table.shipping_postcode')}
+        <div class="col-md-3"><input type="checkbox" name="shipping_postcode" class="switcher" checked={setting.edit.shipping_postcode} value="1" change={change} /></div>
     </label>
 </div>
 <script>
