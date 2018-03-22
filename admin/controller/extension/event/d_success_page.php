@@ -34,7 +34,7 @@ class ControllerExtensionEventDSuccessPage extends Controller
 
         $designer_data = array(
             'config' => 'success_page',
-            'id' => false
+            'id' => 1
             );
 
         $html_dom->find('body', 0)->innertext .= $this->load->controller('extension/d_visual_designer/designer', $designer_data);
@@ -47,7 +47,7 @@ class ControllerExtensionEventDSuccessPage extends Controller
         foreach ($data[0]['vd_content'] as $field_name => $setting_json) {
             $setting = json_decode(html_entity_decode($setting_json, ENT_QUOTES, 'UTF-8'), true);
             $content = $this->{'model_extension_d_visual_designer_designer'}->parseSetting($setting);
-            $this->{'model_extension_d_visual_designer_designer'}->saveContent($content, 'success_page', $output, rawurldecode($field_name));
+            $this->{'model_extension_d_visual_designer_designer'}->saveContent($content, 'success_page', 1, rawurldecode($field_name));
         }
     }    
 

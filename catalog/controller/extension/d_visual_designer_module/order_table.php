@@ -26,22 +26,37 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
             $info_order = $this->session->data['order_information'];
             $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
             $products = $this->getOrderProducts($info_order['order_id']);
-
-            foreach ($products as $product) {
-            $product_info = $this->model_catalog_product->getProduct($product['product_id']);
-				$data['order_products'][] = array(
-					'product_id' => $product['product_id'],
-					'name'       => $product['name'],
-                    'model'      => $product['model'],
-                    'image'      => isset($product_info['image']) && !empty($product_info['image']) ? $this->model_tool_image->resize($product_info['image'], 100, 100) : '',
-                    'option'     => $this->getOrderOptions($info_order['order_id'], $product['order_product_id']),
-                    'href'       => $this->url->link('product/product', 'product_id=' . $product['product_id']),
-					'quantity'   => $product['quantity'],
-					'price'      => $this->currency->format($product['price'] , $this->session->data['currency']),
-					'total'      => $this->currency->format($product['price'] , $this->session->data['currency']),
-					'reward'     => $product['reward']
-				);
+            if(!isset($products) || empty($products)){
+               $data['order_products'][] = array(
+                        'product_id' => '1',
+                        'name'       => 'Iphone',
+                        'model'      => '8 plus 64gb',
+                        'image'      => $this->model_tool_image->resize('catalog/demo/iphone_1.jpg', 100, 100),
+                        'option'     => '',
+                        'href'       => $this->url->link('product/product', 'product_id=1'),
+                        'quantity'   => '1',
+                        'price'      => $this->currency->format('100' , $this->session->data['currency']),
+                        'total'      => $this->currency->format('100' , $this->session->data['currency']),
+                        'reward'     => ''
+                    ); 
+            }else{
+                foreach ($products as $product) {
+                $product_info = $this->model_catalog_product->getProduct($product['product_id']);
+                    $data['order_products'][] = array(
+                        'product_id' => $product['product_id'],
+                        'name'       => $product['name'],
+                        'model'      => $product['model'],
+                        'image'      => isset($product_info['image']) && !empty($product_info['image']) ? $this->model_tool_image->resize($product_info['image'], 100, 100) : '',
+                        'option'     => $this->getOrderOptions($info_order['order_id'], $product['order_product_id']),
+                        'href'       => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+                        'quantity'   => $product['quantity'],
+                        'price'      => $this->currency->format($product['price'] , $this->session->data['currency']),
+                        'total'      => $this->currency->format($product['price'] , $this->session->data['currency']),
+                        'reward'     => $product['reward']
+                    );
+                }
             }
+                
 
             $data['order_id'] = $info_order["order_id"];
             $data['name'] = $setting['name'] ? $info_order["firstname"].' '.$info_order["lastname"]  : '';

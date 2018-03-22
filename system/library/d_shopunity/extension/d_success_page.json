@@ -61,6 +61,7 @@
         "catalog/controller/extension/event/d_success_page.php",
         "system/config/d_visual_designer_route/success_page.php",
         "admin/view/template/extension/d_visual_designer_module/order_table.twig",
+        "admin/language/en-gb/en-gb.png",
         "admin/controller/extension/d_visual_designer_module/order_table.php",
         "admin/language/en-gb/extension/d_visual_designer_module/order_table.php",
         "admin/view/template/extension/d_visual_designer/content_blocks/vd-block-order_table.tag",
