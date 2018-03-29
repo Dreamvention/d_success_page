@@ -21,7 +21,8 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         $this->load->model('checkout/order');
         $this->load->model('catalog/product');
         $this->load->model('tool/image');
-        if($this->request->get['route']=='checkout/success'){
+        
+        if($this->request->get['route']=='checkout/success' || $this->request->get['route']=='extension/d_visual_designer/designer/updateSetting'){
             
             $info_order = $this->session->data['order_information'];
             $info_order['date_added'] = date($this->language->get('date_format_short'), strtotime($info_order['date_added']));
@@ -75,7 +76,7 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
 
         }
         
-        $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
+        $data['text'] = 'index';
         return $data;
     }
 
@@ -94,7 +95,21 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
     public function setting($setting)
     {
         $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
-        
+        $data['order_id'] = $setting["order_id"];
+        $data['name'] = $setting['name'];
+        $data['email'] = $setting['email'];
+        $data['payment_method'] = $setting['payment_method'];
+        $data['shipping_method'] = $setting['shipping_method'];
+        $data['date_added'] = $setting["date_added"];
+        $data['payment_address_1'] = $setting['payment_address_1'];
+        $data['payment_country'] = $setting['payment_country'];
+        $data['payment_city'] = $setting['payment_city'];
+        $data['payment_postcode'] = $setting['payment_postcode'];
+        $data['shipping_address_1'] = $setting['shipping_address_1'];
+        $data['shipping_country'] = $setting['shipping_country'];
+        $data['shipping_city'] = $setting['shipping_city'];
+        $data['shipping_postcode'] = $setting['shipping_postcode'];
+
         return $data;
     }
 
@@ -131,9 +146,9 @@ class ControllerExtensionDVisualDesignerModuleOrderTable extends Controller
         return $data;
     }
 
-    public function text($setting){
+    // public function text($setting){
         
-        $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
-        return $this->model_extension_d_opencart_patch_load->view($this->route, $data);
-    }
+    //     $data['text'] = html_entity_decode(htmlspecialchars_decode($setting['text']), ENT_QUOTES, 'UTF-8');
+    //     return $this->model_extension_d_opencart_patch_load->view($this->route, $data);
+    // }
 }
