@@ -1,5 +1,5 @@
 <vd-setting-block-order_table>
-<div class="form-group col-md-12"> 
+<div class="form-group col-md-12" style="width:1200px;"> 
    <label class="vd-checkbox col-md-6">
         <div class="col-md-3">{store.getLocal('blocks.order_table.name')}</div>
         <input type="hidden" name="name" value="0" />
